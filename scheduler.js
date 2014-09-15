@@ -7,17 +7,20 @@
     var scheduler = function () {
         return {
             init: function (options) {
+                var Categories = [{ Name: 'default', Schedules: [] }];
                 var defaults = {
                     Schedules: [],
+                    Modes: ['timeline', 'day', 'month', 'year'],
                     StartTimeField: 'Start',
                     EndTimeField: 'End',
                     DurationField: 'Duration', // in minutes
-                    UseDuration: false
+                    CategoryField: '',
+                    UseDuration: false,
+                    Format: ''
                 };
                 var settings = $.extend({}, defaults, options);
                 return this.each(function () {
                     var elem = this;
-
 
                     // converting time into milliseconds
                     for (var i = 0; i < settings.Schedules.length; i++) {
@@ -28,12 +31,46 @@
                         else {
                             settings.Schedules[i]._EndTime = ConvertToMilliseconds(settings.Schedules[i][EndTimeField]);
                         }
+
+                        AddToCategoryList(settings.Schedules[i]);
                     }
 
-                    // sort the schedules in ascending order
-                    settings.Schedules.sort(function (a, b) { return a._StartTime - b._EndTime; })
+                    for (var i = 0; i < Categories.length; i++) {
+                        // sort the schedules in ascending order
+                        Categories[i].Schedules.sort(function (a, b) { return a._StartTime - b._EndTime; })
+                    }
+
                     var ConvertToMilliseconds = function (d) {
+                        if (settings.Format) {
+                            // TODO: format the date
+                            return new Date(d).getMilliseconds();
+                        }
                         return new Date(d).getMilliseconds();
+                    }
+
+                    var AddToCategoryList = function (item) {
+                        if (settings.CategoryField) {
+                            var index = GetListItemIndex(Categories, 'Name', item[settings.CategoryField]);
+                            if (index > -1) {
+                                Categories[index].Schedules.push(item);
+                            }
+                            else {
+                                Categories.push({ Name: item[settings.CategoryField], Schedules: [item] });
+                            }
+                        }
+                        else {
+                            Categories[0].Schedules.push(item);
+                        }
+                    }
+
+
+                    var GetListItemIndex = function (list, key, property) {
+                        if (!list) return -1;
+                        for (var i = 0; i < list.length; i++) {
+                            if (list[i][property] == key)
+                                return i;
+                        }
+                        return -1;
                     }
                 });
             }
