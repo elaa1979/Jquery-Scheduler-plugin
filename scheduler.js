@@ -5,12 +5,19 @@
         https://github.com/elaa1979/Jquery-Scheduler-plugin
     */
     var scheduler = function () {
+        var fullmonths = ['JANUARY', 'FEBRUARY', 'MARCH', 'APRIL', 'MAY', 'JUNE', 'JULY', 'AUGUST', 'SEPTEMPER', 'OCTOBER', 'NOVEMBER', 'DECEMBER'];
+        var months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL','AUG','SEP','OCT','NOV','DEC'];
+        var shortmonths = ['JA', 'FE', 'MR', 'AP', 'MY', 'JN', 'JL', 'AU', 'SE', 'OC', 'NO', 'DE'];
+        var fullweeks = ['SUNDAY', 'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY'];
+        var weeks = ['SUN','MON','TUE','WED','THU','FRI','SAT'];
+        var shortweeks = ['SU', 'MO', 'TU', 'WE', 'TH', 'FR', 'SA'];
+      
         return {
             init: function (options) {
                 var Categories = [{ Name: 'default', Schedules: [] }];
                 var defaults = {
                     Schedules: [],
-                    Modes: ['timeline', 'day', 'month', 'year'],
+                    Modes: ["timeline", "day", "month", "year"],
                     StartTimeField: 'Start',
                     EndTimeField: 'End',
                     DurationField: 'Duration', // in minutes
@@ -50,7 +57,7 @@
 
                     var AddToCategoryList = function (item) {
                         if (settings.CategoryField) {
-                            var index = GetListItemIndex(Categories, 'Name', item[settings.CategoryField]);
+                            var index = GetListItemIndex(Categories, "Name", item[settings.CategoryField]);
                             if (index > -1) {
                                 Categories[index].Schedules.push(item);
                             }
@@ -71,6 +78,15 @@
                                 return i;
                         }
                         return -1;
+                    }
+
+                    var GetMonthDays = function (month, year) {
+                        var firstDay = new Date(year, month, 1);
+                        var lastDay = new Date(year, month + 1, 0);
+                        var monthStartIndex = d.getDay();
+                        if (monthStartIndex > 0) {
+                            // TODO: get the prev month details
+                        }
                     }
                 });
             }
