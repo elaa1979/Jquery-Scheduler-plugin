@@ -56,7 +56,7 @@
             return -1;
         }
         
-        // get milliseconds of an date
+        // get milliseconds of an date (milliseconds since January 1, 1970)
         var ConvertToMilliseconds = function (d) {
             if (settings.Format) {
                 // TODO: format the date
