@@ -79,16 +79,41 @@
                         }
                         return -1;
                     }
-
+                    
+                    // get date list to fill 7x6 matrix for month calender display
                     var GetMonthDays = function (month, year) {
                         var firstDay = new Date(year, month, 1);
                         var lastDay = new Date(year, month + 1, 0);
-                        var monthStartIndex = d.getDay();
+                        
+                        var lastDate=lastDay.getDate();
+                        
+                        var monthStartIndex = firstDay.getDay();
+                        var startDate=1;
+                        var dates=[];
+                        
                         if (monthStartIndex > 0) {
-                            // TODO: get the prev month details
+                            // fill previous month dates
+                            startDate = new Date(year, month, 0).getDate()-monthStartIndex-1;
+                            for(var i=0;i<monthStartIndex;i++)
+                            {
+                                dates.push(startDate++)
+                            }
                         }
+                        
+                        for(var i=1;i<lastDate;i++)
+                        {
+                            // fill current month dates
+                            dates.push(i);
+                        }
+                        
+                        for(var i=dates.length,j=1;i<43;i++,j++)
+                        {
+                            // fill next month dates
+                            dates.push(j);
+                        }
+                        
+                        
                     }
-                });
             }
         }
     }();
