@@ -4,6 +4,29 @@
         Copyright 2014 elaa1979 - MIT License
         https://github.com/elaa1979/Jquery-Scheduler-plugin
     */
+    
+    /*
+    
+    #container {
+    width: 100px;
+    height: 100px;
+    position: relative;
+}
+
+#navi, 
+#infoi {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#infoi {
+    z-index: 10;
+}
+    
+    */
     var scheduler = function () {
         var fullmonths = ['JANUARY', 'FEBRUARY', 'MARCH', 'APRIL', 'MAY', 'JUNE', 'JULY', 'AUGUST', 'SEPTEMPER', 'OCTOBER', 'NOVEMBER', 'DECEMBER'];
         var months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL','AUG','SEP','OCT','NOV','DEC'];
