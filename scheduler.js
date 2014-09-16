@@ -82,11 +82,10 @@
                     
                     // get date list to fill 7x6 matrix for month calender display
                     var GetMonthDays = function (month, year) {
+                        
                         var firstDay = new Date(year, month, 1);
                         var lastDay = new Date(year, month + 1, 0);
-                        
                         var lastDate=lastDay.getDate();
-                        
                         var monthStartIndex = firstDay.getDay();
                         var startDate=1;
                         var dates=[];
@@ -112,7 +111,7 @@
                             dates.push(j);
                         }
                         
-                        
+                        return dates;
                     }
             }
         }
