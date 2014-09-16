@@ -143,11 +143,25 @@
                     {
                         var att=document.createAttribute("class");
                         att.value="sch-month-calendar-container";
+                        
+                        var daysHeaderAtt=document.createAttribute("class");
+                        daysHeaderAtt.value="sch-month-calendar-days-header";
+                        
                         var cellatt=document.createAttribute("class");
                         cellatt.value="sch-month-calendar-cell";
+                        
                         var dateList=GetMonthDays(month,year);
+                        
                         var container=document.createElement("DIV");
                         container.setAttributeNode(att);
+                        
+                        for(var i=0;i<7;i++)
+                        {
+                            var cell=document.createElement("DIV");
+                            cell.setAttributeNode(daysHeaderAtt);
+                            cell.innerHTML(weeks[i]);
+                           
+                        }
                         for(var i=0;i<dateList.length;i++)
                         {
                             var cell=document.createElement("DIV");
