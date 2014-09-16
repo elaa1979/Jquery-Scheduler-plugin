@@ -12,11 +12,63 @@
         var weeks = ['SUN','MON','TUE','WED','THU','FRI','SAT'];
         var shortweeks = ['SU', 'MO', 'TU', 'WE', 'TH', 'FR', 'SA'];
       
+      // get date list to fill 7x6 matrix for month calender display
+        var GetMonthDays = function (month, year) {
+            
+            var firstDay = new Date(year, month, 1);
+            var lastDay = new Date(year, month + 1, 0);
+            var lastDate=lastDay.getDate();
+            var monthStartIndex = firstDay.getDay();
+            var startDate=1;
+            var dates=[];
+            
+            if (monthStartIndex > 0) {
+                // fill previous month dates
+                startDate = new Date(year, month, 0).getDate()-monthStartIndex-1;
+                for(var i=0;i<monthStartIndex;i++)
+                {
+                    dates.push(startDate++)
+                }
+            }
+            
+            for(var i=1;i<lastDate;i++)
+            {
+                // fill current month dates
+                dates.push(i);
+            }
+            
+            for(var i=dates.length,j=1;i<43;i++,j++)
+            {
+                // fill next month dates
+                dates.push(j);
+            }
+            
+            return dates;
+        }
+        
+        //  get the index of an item from an object array by property name and value 
+        var GetListItemIndex = function (list, key, property) {
+            if (!list) return -1;
+            for (var i = 0; i < list.length; i++) {
+                if (list[i][property] == key)
+                    return i;
+            }
+            return -1;
+        }
+        
+        // get milliseconds of an date
+        var ConvertToMilliseconds = function (d) {
+            if (settings.Format) {
+                // TODO: format the date
+                return new Date(d).getMilliseconds();
+            }
+            return new Date(d).getMilliseconds();
+        }
+                    
         return {
             init: function (options) {
                 var Categories = [{ Name: 'default', Schedules: [] }];
                 var defaults = {
-                    Schedules: [],
                     Modes: ["timeline", "day", "month", "year"],
                     StartTimeField: 'Start',
                     EndTimeField: 'End',
@@ -26,6 +78,7 @@
                     Format: ''
                 };
                 var settings = $.extend({}, defaults, options);
+                
                 return this.each(function () {
                     var elem = this;
 
@@ -47,14 +100,6 @@
                         Categories[i].Schedules.sort(function (a, b) { return a._StartTime - b._EndTime; })
                     }
 
-                    var ConvertToMilliseconds = function (d) {
-                        if (settings.Format) {
-                            // TODO: format the date
-                            return new Date(d).getMilliseconds();
-                        }
-                        return new Date(d).getMilliseconds();
-                    }
-
                     var AddToCategoryList = function (item) {
                         if (settings.CategoryField) {
                             var index = GetListItemIndex(Categories, "Name", item[settings.CategoryField]);
@@ -69,50 +114,30 @@
                             Categories[0].Schedules.push(item);
                         }
                     }
-
-
-                    var GetListItemIndex = function (list, key, property) {
-                        if (!list) return -1;
-                        for (var i = 0; i < list.length; i++) {
-                            if (list[i][property] == key)
-                                return i;
-                        }
-                        return -1;
-                    }
                     
-                    // get date list to fill 7x6 matrix for month calender display
-                    var GetMonthDays = function (month, year) {
-                        
-                        var firstDay = new Date(year, month, 1);
-                        var lastDay = new Date(year, month + 1, 0);
-                        var lastDate=lastDay.getDate();
-                        var monthStartIndex = firstDay.getDay();
-                        var startDate=1;
-                        var dates=[];
-                        
-                        if (monthStartIndex > 0) {
-                            // fill previous month dates
-                            startDate = new Date(year, month, 0).getDate()-monthStartIndex-1;
-                            for(var i=0;i<monthStartIndex;i++)
-                            {
-                                dates.push(startDate++)
-                            }
-                        }
-                        
-                        for(var i=1;i<lastDate;i++)
+                    // simple view of month calendar
+                    var displayMonthCalendar(month,year)
+                    {
+                        var att=document.createAttribute("class");
+                        att.value="sch-month-calendar-container";
+                        var cellatt=document.createAttribute("class");
+                        cellatt.value="sch-month-calendar-cell";
+                        var dateList=GetMonthDays(month,year);
+                        var container=document.createElement("DIV");
+                        container.setAttributeNode(att);
+                        for(var i=0;i<dateList.length;i++)
                         {
-                            // fill current month dates
-                            dates.push(i);
+                            var cell=document.createElement("DIV");
+                            cell.setAttributeNode(cellatt);
+                            cell.innerHTML(dateList[i]);
                         }
                         
-                        for(var i=dates.length,j=1;i<43;i++,j++)
-                        {
-                            // fill next month dates
-                            dates.push(j);
-                        }
-                        
-                        return dates;
                     }
+
+
+                    
+                    
+                    
             }
         }
     }();
