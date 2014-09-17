@@ -1,1 +1,8 @@
-.sch-main-container { width:100%; height:100%; over-flow:hidden;}
+.sch-main-container {width:100%; height:100%; over-flow:hidden;}
+.sch-month-calendar-container {width:100%; height:100%; over-flow:hidden;}
+.sch-month-calendar-days-header{}
+.sch-month-calendar-cell{}
+
+.sch-draggable-list-container{}
+.sch-draggable-list-item-header{}
+.sch-draggable-list-item-cell{}
