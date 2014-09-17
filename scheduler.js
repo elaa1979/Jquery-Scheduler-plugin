@@ -90,6 +90,7 @@
                     
         return {
             init: function (options) {
+                
                 var Categories = [{ Name: 'default', Schedules: [] }];
                 var defaults = {
                     Modes: ["timeline", "day", "month", "year"],
@@ -98,7 +99,10 @@
                     DurationField: 'Duration', // in minutes
                     CategoryField: '',
                     UseDuration: false,
-                    Format: ''
+                    Format: '',
+                    DraggableItems:[],
+                    DragTextField:'Name',
+                    DragImageUrlField:'ImageUrl'
                 };
                 var settings = $.extend({}, defaults, options);
                 
@@ -169,6 +173,33 @@
                             cell.innerHTML(dateList[i]);
                         }
                         
+                    }
+                    
+                    var DisplayDraggableList=function()
+                    {
+                        var att=document.createAttribute("class");
+                        att.value="sch-draggable-list-container";
+                        
+                        var daysHeaderAtt=document.createAttribute("class");
+                        daysHeaderAtt.value="sch-draggable-list-item-header";
+                        
+                        var cellatt=document.createAttribute("class");
+                        cellatt.value="sch-draggable-list-item-cell";
+                        
+                        var container=document.createElement("DIV");
+                        container.setAttributeNode(att);
+                        
+                        for(var i=0;i<settings.DraggableList.length;i++)
+                        {
+                            var cell=document.createElement("DIV");
+                            title.setAttributeNode(cellatt);
+                            var title=document.createElement("SPAN");
+                            title.setAttributeNode(daysHeaderAtt);
+                            cell.innerHTML(settings.DraggableList[i][DragTextField]);
+                            //cell.css('background-image',DragImageUrlField);
+                                
+                        }
+                    
                     }
             }
         }
