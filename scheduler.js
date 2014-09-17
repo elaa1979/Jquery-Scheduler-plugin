@@ -92,6 +92,7 @@
             init: function (options) {
                 
                 var Categories = [{ Name: 'default', Schedules: [] }];
+                var CurrentDragItems:[];
                 var defaults = {
                     Modes: ["timeline", "day", "month", "year"],
                     StartTimeField: 'Start',
