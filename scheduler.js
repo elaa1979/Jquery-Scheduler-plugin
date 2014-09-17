@@ -35,7 +35,7 @@
         var weeks = ['SUN','MON','TUE','WED','THU','FRI','SAT'];
         var shortweeks = ['SU', 'MO', 'TU', 'WE', 'TH', 'FR', 'SA'];
       
-      // get date list to fill 7x6 matrix for month calender display
+        // get date list to fill 7x6 matrix for month calender display
         var GetMonthDays = function (month, year) {
             
             var firstDay = new Date(year, month, 1);
@@ -92,7 +92,7 @@
             init: function (options) {
                 
                 var Categories = [{ Name: 'default', Schedules: [] }];
-                var CurrentDragItems:[];
+                var CurrentDragItems=[];
                 var defaults = {
                     Modes: ["timeline", "day", "month", "year"],
                     StartTimeField: 'Start',
@@ -202,6 +202,7 @@
                         }
                     
                     }
+                });
             }
         }
     }();
