@@ -34,7 +34,7 @@
         var fullweeks = ['SUNDAY', 'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY'];
         var weeks = ['SUN','MON','TUE','WED','THU','FRI','SAT'];
         var shortweeks = ['SU', 'MO', 'TU', 'WE', 'TH', 'FR', 'SA'];
-      
+        var hours = ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00'];
         // get date list to fill 7x6 matrix for month calender display
         var GetMonthDays = function (month, year) {
             
@@ -210,8 +210,7 @@
                                 
                         }
                     }
-                    
-                    // for test
+
                     displayMonthCalendar(9, 2014);
                 });
             }
