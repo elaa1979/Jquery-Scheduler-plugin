@@ -47,20 +47,20 @@
             
             if (monthStartIndex > 0) {
                 // fill previous month dates
-                startDate = new Date(year, month, 0).getDate()-monthStartIndex-1;
+                startDate = new Date(year, month, 0).getDate()-monthStartIndex+1;
                 for(var i=0;i<monthStartIndex;i++)
                 {
                     dates.push(startDate++)
                 }
             }
             
-            for(var i=1;i<lastDate;i++)
+            for(var i=1;i<=lastDate;i++)
             {
                 // fill current month dates
                 dates.push(i);
             }
             
-            for(var i=dates.length,j=1;i<43;i++,j++)
+            for(var i=dates.length,j=1;i<42;i++,j++)
             {
                 // fill next month dates
                 dates.push(j);
@@ -103,7 +103,8 @@
                     Format: '',
                     DraggableItems:[],
                     DragTextField:'Name',
-                    DragImageUrlField:'ImageUrl'
+                    DragImageUrlField: 'ImageUrl',
+                    Schedules:[]
                 };
                 var settings = $.extend({}, defaults, options);
                 
@@ -144,16 +145,10 @@
                     }
                     
                     // simple view of month calendar
-                    var displayMonthCalendar(month,year)
+                    var displayMonthCalendar=function(month,year)
                     {
                         var att=document.createAttribute("class");
                         att.value="sch-month-calendar-container";
-                        
-                        var daysHeaderAtt=document.createAttribute("class");
-                        daysHeaderAtt.value="sch-month-calendar-days-header";
-                        
-                        var cellatt=document.createAttribute("class");
-                        cellatt.value="sch-month-calendar-cell";
                         
                         var dateList=GetMonthDays(month,year);
                         
@@ -162,18 +157,29 @@
                         
                         for(var i=0;i<7;i++)
                         {
+                            var daysHeaderAtt = document.createAttribute("class");
+                            daysHeaderAtt.value = "sch-month-calendar-days-header";
+
+                            var cellatt = document.createAttribute("class");
+                            cellatt.value = "sch-month-calendar-cell";
+
                             var cell=document.createElement("DIV");
                             cell.setAttributeNode(daysHeaderAtt);
-                            cell.innerHTML(weeks[i]);
-                           
+                            cell.innerHTML=weeks[i];
+                            container.appendChild(cell);
                         }
+
                         for(var i=0;i<dateList.length;i++)
                         {
+                            var cellatt = document.createAttribute("class");
+                            cellatt.value = "sch-month-calendar-cell";
+
                             var cell=document.createElement("DIV");
                             cell.setAttributeNode(cellatt);
-                            cell.innerHTML(dateList[i]);
+                            cell.innerHTML=dateList[i];
+                            container.appendChild(cell);
                         }
-                        
+                       elem.appendChild(container);
                     }
                     
                     var DisplayDraggableList=function()
@@ -181,27 +187,32 @@
                         var att=document.createAttribute("class");
                         att.value="sch-draggable-list-container";
                         
-                        var daysHeaderAtt=document.createAttribute("class");
-                        daysHeaderAtt.value="sch-draggable-list-item-header";
-                        
-                        var cellatt=document.createAttribute("class");
-                        cellatt.value="sch-draggable-list-item-cell";
+                       
                         
                         var container=document.createElement("DIV");
                         container.setAttributeNode(att);
                         
                         for(var i=0;i<settings.DraggableList.length;i++)
                         {
+                            var daysHeaderAtt = document.createAttribute("class");
+                            daysHeaderAtt.value = "sch-draggable-list-item-header";
+
+                            var cellatt = document.createAttribute("class");
+                            cellatt.value = "sch-draggable-list-item-cell";
+
                             var cell=document.createElement("DIV");
                             title.setAttributeNode(cellatt);
                             var title=document.createElement("SPAN");
                             title.setAttributeNode(daysHeaderAtt);
-                            cell.innerHTML(settings.DraggableList[i][DragTextField]);
+                            cell.innerHTML=settings.DraggableList[i][DragTextField];
+                            container.appendChild(cell);
                             //cell.css('background-image',DragImageUrlField);
                                 
                         }
-                    
                     }
+                    
+                    // for test
+                    displayMonthCalendar(9, 2014);
                 });
             }
         }
