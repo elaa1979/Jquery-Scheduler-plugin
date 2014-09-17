@@ -104,7 +104,8 @@
                     DraggableItems:[],
                     DragTextField:'Name',
                     DragImageUrlField: 'ImageUrl',
-                    Schedules:[]
+                    Schedules: [],
+                    TimeLineInterval:1
                 };
                 var settings = $.extend({}, defaults, options);
                 
@@ -182,6 +183,16 @@
                        elem.appendChild(container);
                     }
                     
+                    var DisplayTimeLine = function (start, end, interval) {
+                        var sd=new Date(start);
+                        var ed=new Date(end);
+                        var tlContainer = document.createElement("DIV");
+                        for (var i = sd.getFullYear() ; i <= ed.getFullYear() ; i++) {
+                            var tlYearContainer = document.createElement("DIV");
+                        }
+                    }
+
+
                     var DisplayDraggableList=function()
                     {
                         var att=document.createAttribute("class");
