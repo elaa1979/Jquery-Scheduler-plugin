@@ -105,7 +105,14 @@
                     DragTextField:'Name',
                     DragImageUrlField: 'ImageUrl',
                     Schedules: [],
-                    TimeLineInterval:1
+                    TimeLineInterval:1,
+                    EventTemplate:{ 
+                        TimeLine:'', 
+                        Day:'', 
+                        Month:'', 
+                        Year:'' 
+                    }
+                    
                 };
                 var settings = $.extend({}, defaults, options);
                 
