@@ -60,7 +60,7 @@
                 dates.push(i);
             }
             
-            for(var i=dates.length,j=1;i<42;i++,j++)
+            for(var i=dates.length,j=1;dates.length<42;i++,j++)
             {
                 // fill next month dates
                 dates.push(j);
