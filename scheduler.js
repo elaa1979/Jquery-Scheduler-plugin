@@ -120,23 +120,31 @@
                                 Cell:{
                                     OnBeforeRender:null,
                                     OnAfterRender:null,
-                                    OnClick:null
+                                    OnClick:null,
+                                    OnDrag:null,
+                                    OnDrop:null
                                 },
                                 Row:{
                                     OnBeforeRender:null,
                                     OnAfterRender:null,
-                                    OnClick:null
+                                    OnClick:null,
+                                    OnDrag:null,
+                                    OnDrop:null
                                 }
                             },
                             Row:{
                                 OnBeforeRender:null,
                                 OnAfterRender:null,
-                                OnClick:null
+                                OnClick:null,
+                                OnDrag:null,
+                                OnDrop:null,
                             },
                             Cell:{
                                 OnBeforeRender:null,
                                 OnAfterRender:null,
-                                OnClick:null
+                                OnClick:null,
+                                OnDrag:null,
+                                OnDrop:null,
                             },
                             Task:{
                                 OnBeforeRender:null,
@@ -150,7 +158,15 @@
                         },
                         Year:{},
                         Generic:{},
-                        DraggableList:{},
+                        DraggableList:{
+                            OnBeforeRender:null,
+                            OnAfterRender:null,
+                            OnClick:null,
+                            OnChange:null,
+                            OnDrag:null,
+                            OnDrop:null,
+                            OnDelete:null
+                        },
                         Scheduler:{}
                     }
                     
