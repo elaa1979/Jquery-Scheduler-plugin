@@ -111,7 +111,49 @@
                         Day:'', 
                         Month:'', 
                         Year:'' 
+                    },
+                    Event:{
+                        TimeLine:{},
+                        Day:{},
+                        Month:{
+                            Header:{
+                                Cell:{
+                                    OnBeforeRender:null,
+                                    OnAfterRender:null,
+                                    OnClick:null
+                                },
+                                Row:{
+                                    OnBeforeRender:null,
+                                    OnAfterRender:null,
+                                    OnClick:null
+                                }
+                            },
+                            Row:{
+                                OnBeforeRender:null,
+                                OnAfterRender:null,
+                                OnClick:null
+                            },
+                            Cell:{
+                                OnBeforeRender:null,
+                                OnAfterRender:null,
+                                OnClick:null
+                            },
+                            Task:{
+                                OnBeforeRender:null,
+                                OnAfterRender:null,
+                                OnClick:null,
+                                OnChange:null,
+                                OnDrag:null,
+                                OnDrop:null,
+                                OnDelete:null
+                            },
+                        },
+                        Year:{},
+                        Generic:{},
+                        DraggableList:{},
+                        Scheduler:{}
                     }
+                    
                     
                 };
                 var settings = $.extend({}, defaults, options);
